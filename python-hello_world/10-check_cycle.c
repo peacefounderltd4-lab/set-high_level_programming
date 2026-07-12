@@ -2,9 +2,9 @@
 
 /**
  * check_cycle - checks if a singly linked list has a cycle
- * @list: pointer to head
+ * @list: pointer to head of list
  *
- * Return: 1 if cycle exists, 0 otherwise
+ * Return: 1 if there is a cycle, 0 otherwise
  */
 int check_cycle(listint_t *list)
 {
@@ -16,7 +16,7 @@ int check_cycle(listint_t *list)
 	slow = list;
 	fast = list;
 
-	while (fast && fast->next)
+	while (fast != NULL && fast->next != NULL)
 	{
 		slow = slow->next;
 		fast = fast->next->next;
