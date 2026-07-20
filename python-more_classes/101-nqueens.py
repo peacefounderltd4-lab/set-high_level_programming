@@ -1,59 +1,52 @@
 #!/usr/bin/python3
-"""N queens puzzle solution."""
-
 import sys
 
 
-def solve(n):
-    """Find all solutions."""
+def is_safe(board, row, col):
+    """
+    Check if a queen can be placed at row, col
+    """
+    for r in range(row):
+        c = board[r]
+        if c == col or abs(c - col) == abs(r - row):
+            return False
+    return True
 
-    solutions = []
 
-    def backtrack(row, cols, diag1, diag2, board):
-        if row == n:
-            solutions.append(board[:])
-            return
+def solve_nqueens(n, row=0, board=None):
+    """
+    Solve N Queens using backtracking
+    """
+    if board is None:
+        board = []
 
-        for col in range(n):
-            if col in cols:
-                continue
+    if row == n:
+        solution = []
+        for r in range(n):
+            solution.append([r, board[r]])
+        print(solution)
+        return
 
-            if row - col in diag1:
-                continue
-
-            if row + col in diag2:
-                continue
-
-            board.append([row, col])
-
-            backtrack(
-                row + 1,
-                cols | {col},
-                diag1 | {row - col},
-                diag2 | {row + col},
-                board
-            )
-
+    for col in range(n):
+        if is_safe(board, row, col):
+            board.append(col)
+            solve_nqueens(n, row + 1, board)
             board.pop()
 
-    backtrack(0, set(), set(), set(), [])
 
-    return solutions
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: nqueens N")
+        sys.exit(1)
 
+    try:
+        n = int(sys.argv[1])
+    except ValueError:
+        print("N must be a number")
+        sys.exit(1)
 
-if len(sys.argv) != 2:
-    print("Usage: nqueens N")
-    sys.exit(1)
+    if n < 4:
+        print("N must be at least 4")
+        sys.exit(1)
 
-try:
-    n = int(sys.argv[1])
-except:
-    print("N must be a number")
-    sys.exit(1)
-
-if n < 4:
-    print("N must be at least 4")
-    sys.exit(1)
-
-for solution in solve(n):
-    print(solution)
+    solve_nqueens(n)
