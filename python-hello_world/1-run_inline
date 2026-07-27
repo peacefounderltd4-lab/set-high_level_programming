@@ -1,2 +1,3 @@
-#!/bin/bash
-python3 -c "$PYCODE"
+export PYCODE='print(f"Best School: {88+10}")'
+chmod +x 1-run_inline
+./1-run_inline
