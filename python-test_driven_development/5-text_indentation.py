@@ -1,3 +1,4 @@
+```python
 #!/usr/bin/python3
 """Text indentation."""
 
@@ -20,3 +21,4 @@ def text_indentation(text):
 
     if line.strip():
         print(line.strip(), end="")
+```
