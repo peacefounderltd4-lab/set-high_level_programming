@@ -1,23 +1,22 @@
 #!/usr/bin/python3
 """Print text with 2 new lines after ., ? and :."""
 
+
 def text_indentation(text):
-"""Print text with 2 new lines after ., ? and :."""
-if not isinstance(text, str):
-raise TypeError("text must be a string")
+    """Print text with 2 new lines after ., ? and :."""
+    if not isinstance(text, str):
+        raise TypeError("text must be a string")
 
-```
-line = ""
+    line = ""
 
-for char in text:
-    if char in ".?:":
-        line += char
-        print(line.strip())
-        print()
-        line = ""
-    else:
-        line += char
+    for char in text:
+        if char in ".?:":
+            line += char
+            print(line.strip())
+            print()
+            line = ""
+        else:
+            line += char
 
-if line.strip():
-    print(line.strip(), end="")
-```
+    if line.strip():
+        print(line.strip(), end="")
