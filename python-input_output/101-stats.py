@@ -1,20 +1,18 @@
 #!/usr/bin/python3
 """Read stdin and compute metrics."""
 
-
 import sys
 
 
-def print_stats(size, status_codes):
-    """Print file size and status code statistics."""
-    print("File size: {}".format(size))
-
+def print_stats(total_size, status_codes):
+    """Print accumulated file size and status code counts."""
+    print("File size: {}".format(total_size))
     for code in sorted(status_codes):
-        if status_codes[code] > 0:
+        if status_codes[code]:
             print("{}: {}".format(code, status_codes[code]))
 
 
-size = 0
+total_size = 0
 status_codes = {
     200: 0,
     301: 0,
@@ -31,24 +29,26 @@ try:
     for line in sys.stdin:
         parts = line.split()
 
-        if len(parts) >= 7:
+        if len(parts) >= 2:
             try:
-                file_size = int(parts[-1])
                 status = int(parts[-2])
+                size = int(parts[-1])
             except ValueError:
+                line_count += 1
+                if line_count % 10 == 0:
+                    print_stats(total_size, status_codes)
                 continue
 
-            size += file_size
-
+            total_size += size
             if status in status_codes:
                 status_codes[status] += 1
 
         line_count += 1
 
         if line_count % 10 == 0:
-            print_stats(size, status_codes)
+            print_stats(total_size, status_codes)
 
 except KeyboardInterrupt:
     pass
 
-print_stats(size, status_codes)
+print_stats(total_size, status_codes)
