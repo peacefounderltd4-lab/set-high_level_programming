@@ -8,10 +8,10 @@ load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
 
 
 def main():
-    """Add command-line arguments to a JSON file."""
+    """Load, add, and save command-line arguments."""
     try:
         items = load_from_json_file("add_item.json")
-    except Exception:
+    except FileNotFoundError:
         items = []
 
     items.extend(sys.argv[1:])
