@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Add command-line arguments to a JSON file."""
+"""Add arguments to a JSON file."""
 
 import sys
 
@@ -8,10 +8,10 @@ load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
 
 
 def main():
-    """Load items, add command-line arguments, and save them."""
+    """Add command-line arguments to a JSON file."""
     try:
         items = load_from_json_file("add_item.json")
-    except (FileNotFoundError, json.JSONDecodeError):
+    except Exception:
         items = []
 
     items.extend(sys.argv[1:])
