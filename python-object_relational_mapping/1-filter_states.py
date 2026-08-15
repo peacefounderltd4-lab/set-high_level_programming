@@ -1,7 +1,9 @@
 #!/usr/bin/python3
+"""Lists all states from the database that match a given name."""
 
 import sys
 import MySQLdb
+
 
 if __name__ == "__main__":
     username = sys.argv[1]
@@ -24,8 +26,8 @@ if __name__ == "__main__":
         (state_name,)
     )
 
-    for row in cursor.fetchall():
-        print(row)
+    for state in cursor.fetchall():
+        print(state)
 
     cursor.close()
     db.close()
