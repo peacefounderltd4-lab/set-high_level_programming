@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Filter states by user input."""
+"""List states matching a user-provided name."""
 
 import MySQLdb
 import sys
