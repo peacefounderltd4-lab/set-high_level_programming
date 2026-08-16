@@ -15,10 +15,10 @@ if __name__ == "__main__":
     )
 
     cursor = db.cursor()
-    cursor.execute("SELECT * FROM states ORDER BY id ASC")
+    cursor.execute("SELECT id, name FROM states ORDER BY id ASC")
 
-    for row in cursor.fetchall():
-        print(row)
+    for state in cursor.fetchall():
+        print(state)
 
     cursor.close()
     db.close()
