@@ -1,8 +1,6 @@
 #!/usr/bin/python3
-"""
-Displays all values in the states table where name matches the argument.
-Uses string formatting as strictly required by this specific task.
-"""
+"""Lists all states with a name matching the argument."""
+
 import MySQLdb
 import sys
 
@@ -15,11 +13,17 @@ if __name__ == "__main__":
         passwd=sys.argv[2],
         db=sys.argv[3]
     )
+
     cursor = db.cursor()
-    query = "SELECT * FROM states WHERE name LIKE BINARY '{}' ORDER BY id ASC"
-    cursor.execute(query.format(sys.argv[4]))
-    rows = cursor.fetchall()
-    for row in rows:
-        print(row)
+
+    query = "SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(
+        sys.argv[4]
+    )
+
+    cursor.execute(query)
+
+    for state in cursor.fetchall():
+        print(state)
+
     cursor.close()
     db.close()
