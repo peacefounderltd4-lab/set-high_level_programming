@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Lists all states with a name matching the argument."""
+"""Filter states by user input."""
 
 import MySQLdb
 import sys
@@ -22,8 +22,8 @@ if __name__ == "__main__":
 
     cursor.execute(query)
 
-    for state in cursor.fetchall():
-        print(state)
+    for row in cursor.fetchall():
+        print(row)
 
     cursor.close()
     db.close()
