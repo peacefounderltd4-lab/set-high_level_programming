@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""List all states."""
+"""List all states from a MySQL database."""
 
 import sys
 import MySQLdb
@@ -14,11 +14,11 @@ if __name__ == "__main__":
         db=sys.argv[3]
     )
 
-    cur = db.cursor()
-    cur.execute("SELECT * FROM states ORDER BY id ASC")
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM states ORDER BY id ASC")
 
-    for row in cur.fetchall():
-        print(row)
+    for state in cursor.fetchall():
+        print(state)
 
-    cur.close()
+    cursor.close()
     db.close()
