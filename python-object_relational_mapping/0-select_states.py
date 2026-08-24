@@ -1,4 +1,3 @@
-```python
 #!/usr/bin/python3
 """List all states from a MySQL database."""
 
@@ -23,4 +22,3 @@ if __name__ == "__main__":
 
     cursor.close()
     db.close()
-```
