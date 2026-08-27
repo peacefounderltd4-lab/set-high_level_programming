@@ -1,3 +1,3 @@
 #!/bin/bash
-# Displays the body only when the HTTP response status code is 200
-curl -s -f "$1"
+curl -s -L -w "%{http_code}" -o /tmp/body "$1" | grep -q '^200$' && cat /tmp/body
+rm -f /tmp/body
