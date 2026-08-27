@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""List all cities of a given state."""
+"""List all cities with their state names."""
 
 import MySQLdb
 import sys
@@ -16,12 +16,10 @@ if __name__ == "__main__":
 
     cursor = db.cursor()
     cursor.execute(
-        """
-        SELECT cities.id, cities.name, states.name
+        """SELECT cities.id, cities.name, states.name
         FROM cities
         JOIN states ON cities.state_id = states.id
-        ORDER BY cities.id ASC
-        """
+        ORDER BY cities.id ASC"""
     )
 
     for city in cursor.fetchall():
