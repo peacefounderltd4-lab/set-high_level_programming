@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Create California with San Francisco."""
+"""Create California and San Francisco."""
 
 import sys
 
