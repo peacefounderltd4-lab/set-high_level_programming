@@ -1,22 +1,33 @@
 #!/usr/bin/python3
-"""State model with a relationship to City objects."""
+"""Define State and its relationship with City."""
 
 from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-from model_state import Base
+
+
+Base = declarative_base()
 
 
 class State(Base):
-    """Represents a state in the states table."""
+    """Represent a state."""
 
     __tablename__ = "states"
 
-    id = Column(Integer, primary_key=True, nullable=False,
-                autoincrement=True)
-    name = Column(String(128), nullable=False)
+    id = Column(
+        Integer,
+        primary_key=True,
+        nullable=False,
+        autoincrement=True
+    )
+
+    name = Column(
+        String(128),
+        nullable=False
+    )
 
     cities = relationship(
         "City",
         back_populates="state",
-        cascade="all, delete, delete-orphan"
+        cascade="all, delete-orphan"
     )
