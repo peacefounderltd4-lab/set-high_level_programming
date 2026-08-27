@@ -1,9 +1,6 @@
 #!/usr/bin/python3
-"""List states matching a given name."""
-
 import MySQLdb
 import sys
-
 
 if __name__ == "__main__":
     db = MySQLdb.connect(
@@ -14,14 +11,14 @@ if __name__ == "__main__":
         db=sys.argv[3]
     )
 
-    cursor = db.cursor()
-    query = "SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(
+    cur = db.cursor()
+    query = "SELECT id, name FROM states WHERE name = '{}' ORDER BY id ASC".format(
         sys.argv[4]
     )
-    cursor.execute(query)
+    cur.execute(query)
 
-    for state in cursor.fetchall():
-        print(state)
+    for row in cur.fetchall():
+        print(row)
 
-    cursor.close()
+    cur.close()
     db.close()
