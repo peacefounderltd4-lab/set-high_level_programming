@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-str1 = "Elmwood"
-str2 = "Institute"
-print(f"Welcome to {str1} {str2}!")
-
+git add 6-concat.py
+git commit -m "Fix 6-concat.py"
+git push
