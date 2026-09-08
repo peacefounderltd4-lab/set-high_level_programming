@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-
-def print_last_digit(number):
-    last_digit = number % 10
-    print(last_digit, end="")
-    return last_digit
+for i in range(0, 9):
+    for j in range(i + 1, 10):
+        if i == 8 and j == 9:
+            print("{}{}".format(i, j))
+        else:
+            print("{}{}".format(i, j), end=", ")
