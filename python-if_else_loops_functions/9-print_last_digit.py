@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-def print_last_digit(number):
-    last_digit = abs(number) % 10
-    print("{}".format(last_digit), end="")
-    return last_digit
+str1 = "Holberton"
+str2 = "School"
+str1 = str1 + " " + str2
+print(f"Welcome to {str1}!")
+
