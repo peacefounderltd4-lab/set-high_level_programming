@@ -1,3 +1,5 @@
-git add 0-positive_or_negative
-git commit -m "Fix 0-positive_or_negative script"
-git push
+#!/usr/bin/python3
+def print_last_digit(number):
+    last_digit = abs(number) % 10
+    print("{}".format(last_digit), end="")
+    return last_digit
