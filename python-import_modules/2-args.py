@@ -9,8 +9,8 @@ if __name__ == "__main__":
     elif count == 1:
         print("1 argument:")
     else:
-        print(f"{count} arguments:")
+        print("{} arguments:".format(count))
 
     for i in range(1, len(sys.argv)):
-        print(f"{i}: {sys.argv[i]}")
-        
+        print("{}: {}".format(i, sys.argv[i]))
+
