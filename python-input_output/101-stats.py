@@ -8,7 +8,7 @@ import sys
 def print_stats(total_size, status_counts):
     """Prints the accumulated metrics."""
     print("File size: {:d}".format(total_size))
-    for code in sorted(status_counts.keys(), key=int):
+    for code in sorted(status_counts.keys()):
         if status_counts[code] > 0:
             print("{}: {:d}".format(code, status_counts[code]))
 
@@ -34,13 +34,14 @@ if __name__ == "__main__":
             except Exception:
                 pass
 
-            if line_count % 10 == 0:
+            if line_count == 10:
                 print_stats(total_file_size, status_counts)
+                line_count = 0
+
+        if line_count != 0:
+            print_stats(total_file_size, status_counts)
 
     except KeyboardInterrupt:
         print_stats(total_file_size, status_counts)
         raise
-
-    if line_count % 10 != 0:
-        print_stats(total_file_size, status_counts)
-              
+        
