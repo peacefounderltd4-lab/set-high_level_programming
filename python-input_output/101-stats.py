@@ -5,49 +5,40 @@ A script that reads stdin line by line and computes metrics.
 import sys
 
 
-def print_metrics(total_file_size, status_codes):
+def print_stats(total_size, status_counts):
     """Prints the accumulated metrics."""
-    print("File size: {:d}".format(total_file_size))
-    for key in sorted(status_codes.keys()):
-        if status_codes[key] > 0:
-            print("{}: {:d}".format(key, status_codes[key]))
+    print("File size: {:d}".format(total_size))
+    for code in sorted(status_counts.keys()):
+        if status_counts[code] > 0:
+            print("{}: {:d}".format(code, status_counts[code]))
 
 
 if __name__ == "__main__":
     total_file_size = 0
-    status_codes = {
-        "200": 0,
-        "301": 0,
-        "400": 0,
-        "401": 0,
-        "403": 0,
-        "404": 0,
-        "405": 0,
-        "500": 0
-    }
+    valid_codes = ['200', '301', '400', '401', '403', '404', '405', '500']
+    status_counts = {code: 0 for code in valid_codes}
     line_count = 0
 
     try:
         for line in sys.stdin:
             line_count += 1
-            data = line.split()
+            parts = line.split()
             try:
-                total_file_size += int(data[-1])
-            except (IndexError, ValueError):
+                if len(parts) >= 2:
+                    file_size = int(parts[-1])
+                    total_file_size += file_size
+
+                    status_code = parts[-2]
+                    if status_code in status_counts:
+                        status_counts[status_code] += 1
+            except Exception:
                 pass
 
-            try:
-                if data[-2] in status_codes:
-                    status_codes[data[-2]] += 1
-            except IndexError:
-                pass
-
-            if line_count % 10 == 0:
-                print_metrics(total_file_size, status_codes)
-
-        if line_count % 10 != 0 and line_count > 0:
-            print_metrics(total_file_size, status_codes)
+            if line_count == 10:
+                print_stats(total_file_size, status_counts)
+                line_count = 0
 
     except KeyboardInterrupt:
-        print_metrics(total_file_size, status_codes)
+        print_stats(total_file_size, status_counts)
         raise
+        
