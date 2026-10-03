@@ -1,13 +1,9 @@
-0-run
-1-run_inline
-2-print.py
-3-print_number.py
-4-print_float.py
-5-print_string.py
-6-concat.py
-7-edges.py
-8-concat_edges.py
-9-easter_egg.py
-100-write.py
-101-compile
-102-magic_calculation.py
+# Python - Hello, World
+
+This project marks the beginning of the Software Engineering Back End Specialisation tracking core high-level language mechanics.
+
+## Requirements
+* All files interpreted/compiled on Ubuntu 20.04 LTS using `python3` (version 3.8.5) or `gcc` using standard options.
+* Code style compliance with `pycodestyle` (version 2.8.*).
+* C files formatted to adhere to the Betty style guide.
+* 
