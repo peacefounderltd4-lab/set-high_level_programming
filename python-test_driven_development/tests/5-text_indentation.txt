@@ -1,10 +1,31 @@
 >>> text_indentation = __import__('5-text_indentation').text_indentation
 
-# 1. Test: 
+# 1. Test: text = string
+>>> text_indentation("Holberton. School? How: are you")
+Holberton.
+<BLANKLINE>
+School?
+<BLANKLINE>
+How:
+<BLANKLINE>
+are you
+
+# 2. Test: text = not string
+>>> text_indentation(12)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+
+# 3. Test: text = string with blank line
+>>> text_indentation("Hello.\n\nWorld?")
+Hello.
+<BLANKLINE>
+<BLANKLINE>
+World?
+<BLANKLINE>
+
 # 4. Test: missing one argument
 >>> text_indentation()
 Traceback (most recent call last):
 ...
 TypeError: text_indentation() missing 1 required positional argument: 'text'
-
-￼Enter
