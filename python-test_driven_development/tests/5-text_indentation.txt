@@ -1,31 +1,33 @@
->>> text_indentation = __import__('5-text_indentation').text_indentation
+#!/usr/bin/python3
+"""
+Module for text_indentation method.
+"""
 
-# 1. Test: text = string
->>> text_indentation("Holberton. School? How: are you")
-Holberton.
-<BLANKLINE>
-School?
-<BLANKLINE>
-How:
-<BLANKLINE>
-are you
 
-# 2. Test: text = not string
->>> text_indentation(12)
-Traceback (most recent call last):
-...
-TypeError: text must be a string
+def text_indentation(text):
+    """
+    Prints a text with 2 new lines after each of these characters: ., ? and :
 
-# 3. Test: text = string with blank line
->>> text_indentation("Hello.\n\nWorld?")
-Hello.
-<BLANKLINE>
-<BLANKLINE>
-World?
-<BLANKLINE>
+    Args:
+        text (str): The text to be printed.
 
-# 4. Test: missing one argument
->>> text_indentation()
-Traceback (most recent call last):
-...
-TypeError: text_indentation() missing 1 required positional argument: 'text'
+    Raises:
+        TypeError: If text is not a string.
+    """
+    if not isinstance(text, str):
+        raise TypeError("text must be a string")
+
+    c = 0
+    while c < len(text) and text[c] == ' ':
+        c += 1
+
+    while c < len(text):
+        print(text[c], end="")
+        if text[c] == "\n" or text[c] in [".", "?", ":"]:
+            if text[c] in [".", "?", ":"]:
+                print("\n")
+            c += 1
+            while c < len(text) and text[c] == ' ':
+                c += 1
+            continue
+        c += 1
