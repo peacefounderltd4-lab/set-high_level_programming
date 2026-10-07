@@ -38,7 +38,7 @@ m_a or m_b not a list of lists:
     ...
     TypeError: m_b must be a list of lists
 
-m_a or m_b empty:
+m_a empty:
     >>> matrix_mul([], [[1, 2]])
     Traceback (most recent call last):
     ...
@@ -49,6 +49,7 @@ m_a or m_b empty:
     ...
     ValueError: m_a can't be empty
 
+m_b empty:
     >>> matrix_mul([[1, 2]], [])
     Traceback (most recent call last):
     ...
@@ -59,23 +60,25 @@ m_a or m_b empty:
     ...
     ValueError: m_b can't be empty
 
-m_a or m_b contains non-integer/float elements:
+m_a contains non-integer or non-float:
     >>> matrix_mul([["hello", 2]], [[1, 2]])
     Traceback (most recent call last):
     ...
     TypeError: m_a should contain only integers or floats
 
+m_b contains non-integer or non-float:
     >>> matrix_mul([[1, 2]], [[1, "world"]])
     Traceback (most recent call last):
     ...
     TypeError: m_b should contain only integers or floats
 
-m_a or m_b rows of various sizes:
+m_a rows of various sizes:
     >>> matrix_mul([[1, 2, 3], [4, 5]], [[1, 2], [3, 4]])
     Traceback (most recent call last):
     ...
     TypeError: each row of m_a must be of the same size
 
+m_b rows of various sizes:
     >>> matrix_mul([[1, 2], [3, 4]], [[1, 2, 3], [4, 5]])
     Traceback (most recent call last):
     ...
