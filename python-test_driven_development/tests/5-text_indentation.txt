@@ -54,4 +54,3 @@ Missing argument test:
     Traceback (most recent call last):
     ...
     TypeError: text_indentation() missing 1 required positional argument: 'text'
-￼Enter
