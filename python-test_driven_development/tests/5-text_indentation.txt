@@ -1,33 +1,59 @@
-#!/usr/bin/python3
-"""
-Module for text_indentation method.
-"""
+cat << 'EOF' > tests/5-text_indentation.txt
+==============================
+How to Use 5-text_indentation
+==============================
 
+This module defines a text indentation function ``text_indentation(text)``.
 
-def text_indentation(text):
-    """
-    Prints a text with 2 new lines after each of these characters: ., ? and :
+Usage
+=====
 
-    Args:
-        text (str): The text to be printed.
+Importing the function:
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
 
-    Raises:
-        TypeError: If text is not a string.
-    """
-    if not isinstance(text, str):
-        raise TypeError("text must be a string")
+Normal string test:
+    >>> text_indentation("Holberton. School? How: are you")
+    Holberton.
+    <BLANKLINE>
+    School?
+    <BLANKLINE>
+    How:
+    <BLANKLINE>
+    are you
 
-    c = 0
-    while c < len(text) and text[c] == ' ':
-        c += 1
+String with trailing/leading spaces:
+    >>> text_indentation("   Hello.   How are you?   Fine:   thanks   ")
+    Hello.
+    <BLANKLINE>
+    How are you?
+    <BLANKLINE>
+    Fine:
+    <BLANKLINE>
+    thanks
 
-    while c < len(text):
-        print(text[c], end="")
-        if text[c] == "\n" or text[c] in [".", "?", ":"]:
-            if text[c] in [".", "?", ":"]:
-                print("\n")
-            c += 1
-            while c < len(text) and text[c] == ' ':
-                c += 1
-            continue
-        c += 1
+String with blank line:
+    >>> text_indentation("Hello.\n\nWorld?")
+    Hello.
+    <BLANKLINE>
+    <BLANKLINE>
+    World?
+    <BLANKLINE>
+
+Non-string test:
+    >>> text_indentation(12)
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
+    >>> text_indentation([1, 2, 3])
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
+Missing argument test:
+    >>> text_indentation()
+    Traceback (most recent call last):
+    ...
+    TypeError: text_indentation() missing 1 required positional argument: 'text'
+EOF
+￼Enter
