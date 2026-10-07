@@ -1,0 +1,57 @@
+==============================
+How to Use 4-text_indentation
+==============================
+
+This module defines a text indentation function ``text_indentation(text)``.
+
+Usage
+=====
+
+Importing the function:
+    >>> text_indentation = __import__('4-text_indentation').text_indentation
+
+Normal string test:
+    >>> text_indentation("Holberton. School? How: are you")
+    Holberton.
+    <BLANKLINE>
+    School?
+    <BLANKLINE>
+    How:
+    <BLANKLINE>
+    are you
+
+String with trailing/leading spaces:
+    >>> text_indentation("   Hello.   How are you?   Fine:   thanks   ")
+    Hello.
+    <BLANKLINE>
+    How are you?
+    <BLANKLINE>
+    Fine:
+    <BLANKLINE>
+    thanks
+
+String with blank line:
+    >>> text_indentation("Hello.\n\nWorld?")
+    Hello.
+    <BLANKLINE>
+    <BLANKLINE>
+    World?
+    <BLANKLINE>
+
+Non-string test:
+    >>> text_indentation(12)
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
+    >>> text_indentation([1, 2, 3])
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
+Missing argument test:
+    >>> text_indentation()
+    Traceback (most recent call last):
+    ...
+    TypeError: text_indentation() missing 1 required positional argument: 'text'
+￼Enter
