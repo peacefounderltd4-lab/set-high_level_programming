@@ -28,14 +28,16 @@ def matrix_divided(matrix, div):
     for row in matrix:
         if not isinstance(row, list) or len(row) == 0:
             raise TypeError(msg)
-        for ele in row:
-            if type(ele) not in (int, float):
-                raise TypeError(msg)
 
     row_len = len(matrix[0])
     for row in matrix:
         if len(row) != row_len:
             raise TypeError("matrix must have each row with the same size")
+
+    for row in matrix:
+        for ele in row:
+            if type(ele) not in (int, float):
+                raise TypeError(msg)
 
     if type(div) not in (int, float):
         raise TypeError("div must be a number")
