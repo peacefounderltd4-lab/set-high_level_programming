@@ -1,9 +1,5 @@
 #!/usr/bin/python3
-"""Iyi script yongeza ibintu byose byatanzwe mu murongo w'amabwiriza
-
-(command line arguments) mu rutonde rwa Python, hanyuma ikabibika
-mu dosiye ya JSON yitwa `add_item.json`.
-"""
+"""Script that adds all arguments to a Python list, and then save them to a file."""
 
 import sys
 
@@ -19,4 +15,3 @@ except (FileNotFoundError, ValueError):
 
 items.extend(sys.argv[1:])
 save_to_json_file(items, filename)
-￼Enter
