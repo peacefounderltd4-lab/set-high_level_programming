@@ -1,4 +1,3 @@
-cat << 'EOF' > 5-text_indentation.py
 #!/usr/bin/python3
 """
 Module for text_indentation method.
@@ -32,5 +31,3 @@ def text_indentation(text):
                 c += 1
             continue
         c += 1
-EOF
-￼Enter
