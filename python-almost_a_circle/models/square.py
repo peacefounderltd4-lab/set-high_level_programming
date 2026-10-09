@@ -1,11 +1,10 @@
 #!/usr/bin/python3
-"""Defines the Square class."""
-
+"""Square class."""
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
-    """Represents a square."""
+    """Represent a square."""
 
     def __init__(self, size, x=0, y=0, id=None):
         """Initialize a Square instance."""
@@ -13,41 +12,39 @@ class Square(Rectangle):
 
     @property
     def size(self):
-        """Return the size."""
+        """Get square size."""
         return self.width
 
     @size.setter
     def size(self, value):
-        """Set the size."""
+        """Set square size."""
         self.width = value
         self.height = value
 
     def __str__(self):
-        """Return the string representation."""
+        """Return the square description."""
         return "[Square] ({}) {}/{} - {}".format(
             self.id,
             self.x,
             self.y,
-            self.size
+            self.width
         )
 
     def update(self, *args, **kwargs):
-        """Update Square attributes."""
+        """Assign square attributes."""
+        attributes = ["id", "size", "x", "y"]
+
         if args:
-            attributes = ["id", "size", "x", "y"]
-
             for index, value in enumerate(args):
-                if index >= len(attributes):
-                    break
-                setattr(self, attributes[index], value)
-            return
-
-        for key, value in kwargs.items():
-            if hasattr(self, key):
-                setattr(self, key, value)
+                if index < len(attributes):
+                    setattr(self, attributes[index], value)
+        else:
+            for key, value in kwargs.items():
+                if key in attributes:
+                    setattr(self, key, value)
 
     def to_dictionary(self):
-        """Return dictionary representation."""
+        """Return the dictionary representation of a Square."""
         return {
             "id": self.id,
             "size": self.size,
