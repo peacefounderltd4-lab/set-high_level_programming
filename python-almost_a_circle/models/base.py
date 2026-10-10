@@ -4,7 +4,7 @@ import json
 
 
 class Base:
-    """Class ifite inshingano yo gucunga no kuringaniza id n'imikorere ya JSON."""
+    """Class ifite inshingano yo gucunga no kuringaniza id."""
 
     __nb_objects = 0
 
