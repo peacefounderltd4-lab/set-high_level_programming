@@ -1,15 +1,15 @@
 #!/usr/bin/python3
-"""Base class for all models."""
+"""Icyiciro cy'ibanze (Base class) gihuriweho n'izindi class zose."""
 import json
 
 
 class Base:
-    """Manage the id attribute of all models."""
+    """Class ifite inshingano yo gucunga no kuringaniza id n'imikorere ya JSON."""
 
     __nb_objects = 0
 
     def __init__(self, id=None):
-        """Initialize a Base instance."""
+        """Gutangiza Base object."""
         if id is not None:
             self.id = id
         else:
@@ -18,42 +18,49 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """Return JSON representation of dictionaries."""
+        """Igarura JSON string representation ya list_dictionaries."""
         if list_dictionaries is None or len(list_dictionaries) == 0:
             return "[]"
         return json.dumps(list_dictionaries)
 
     @classmethod
     def save_to_file(cls, list_objs):
-        """Write JSON representation of objects to a file."""
+        """Iandika JSON string representation ya list_objs muri dosiye."""
         filename = cls.__name__ + ".json"
-
-        if list_objs is None:
-            list_objs = []
-
-        dictionaries = [
-            obj.to_dictionary() for obj in list_objs
-        ]
-
-        with open(filename, "w", encoding="utf-8") as file:
-            file.write(cls.to_json_string(dictionaries))
+        list_dicts = []
+        if list_objs is not None:
+            list_dicts = [o.to_dictionary() for o in list_objs]
+        with open(filename, "w") as f:
+            f.write(cls.to_json_string(list_dicts))
 
     @staticmethod
     def from_json_string(json_string):
-        """Return a list represented by a JSON string."""
-        if json_string is None or json_string == "":
+        """Igarura list y'ibiri muri JSON string."""
+        if json_string is None or len(json_string) == 0:
             return []
         return json.loads(json_string)
 
     @classmethod
     def create(cls, **dictionary):
-        """Return an instance with attributes already set."""
+        """Igarura object yuzuye ifite attributes zose zatanzwe."""
         if cls.__name__ == "Rectangle":
-            instance = cls(1, 1)
+            dummy = cls(1, 1)
         elif cls.__name__ == "Square":
-            instance = cls(1)
+            dummy = cls(1)
         else:
-            raise TypeError("Unsupported class")
+            dummy = None
+        dummy.update(**dictionary)
+        return dummy
 
-        instance.update(**dictionary)
-        return instance
+    @classmethod
+    def load_from_file(cls):
+        """Igarura list y'objects zisomwe muri dosiye."""
+        filename = str(cls.__name__) + ".json"
+        try:
+            with open(filename, "r") as f:
+                json_string = f.read()
+            list_dicts = cls.from_json_string(json_string)
+            return [cls.create(**d) for d in list_dicts]
+        except IOError:
+            return []
+            
