@@ -1,53 +1,50 @@
 #!/usr/bin/python3
-"""Square class."""
+"""Icyiciro cya Square gikomoka kuri Rectangle."""
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
-    """Represent a square."""
+    """Square class ikoresha uburebure bungana kuri width na height."""
 
     def __init__(self, size, x=0, y=0, id=None):
-        """Initialize a Square instance."""
+        """Gutangiza Square object."""
         super().__init__(size, size, x, y, id)
 
     @property
     def size(self):
-        """Get square size."""
+        """Gufata uburebure bwa size."""
         return self.width
 
     @size.setter
     def size(self, value):
-        """Set square size."""
+        """Gushyiraho size ku mpande zombi."""
         self.width = value
         self.height = value
 
     def __str__(self):
-        """Return the square description."""
+        """Inyandiko yerekana imiterere ya Square."""
         return "[Square] ({}) {}/{} - {}".format(
-            self.id,
-            self.x,
-            self.y,
-            self.width
+            self.id, self.x, self.y, self.width
         )
 
     def update(self, *args, **kwargs):
-        """Assign square attributes."""
-        attributes = ["id", "size", "x", "y"]
-
-        if args:
-            for index, value in enumerate(args):
-                if index < len(attributes):
-                    setattr(self, attributes[index], value)
-        else:
+        """Ivugurura attributes za Square."""
+        if args and len(args) != 0:
+            attrs = ["id", "size", "x", "y"]
+            for i, arg in enumerate(args):
+                if i < len(attrs):
+                    setattr(self, attrs[i], arg)
+        elif kwargs and len(kwargs) != 0:
             for key, value in kwargs.items():
-                if key in attributes:
+                if hasattr(self, key):
                     setattr(self, key, value)
 
     def to_dictionary(self):
-        """Return the dictionary representation of a Square."""
+        """Igarura dictionary representation ya Square."""
         return {
             "id": self.id,
             "size": self.size,
             "x": self.x,
             "y": self.y
-        }
+    }
+        
