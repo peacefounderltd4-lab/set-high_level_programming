@@ -95,9 +95,9 @@ class Rectangle(Base):
                 if i < len(attrs):
                     setattr(self, attrs[i], arg)
         elif kwargs and len(kwargs) != 0:
-            for key, value in kwargs.items():
-                if hasattr(self, key):
-                    setattr(self, key, value)
+            for k, v in kwargs.items():
+                if hasattr(self, k):
+                    setattr(self, k, v)
 
     def to_dictionary(self):
         """Igarura dictionary representation ya Rectangle."""
@@ -107,5 +107,4 @@ class Rectangle(Base):
             "height": self.height,
             "x": self.x,
             "y": self.y
-    }
-    
+        }
