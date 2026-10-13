@@ -1,49 +1,52 @@
+
 #!/usr/bin/python3
-"""Icyiciro cya Square gikomoka kuri Rectangle."""
+"""This module defines the Square class."""
+
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
-    """Square class ikoresha uburebure bungana kuri width na height."""
+    """Represent a square."""
 
     def __init__(self, size, x=0, y=0, id=None):
-        """Gutangiza Square object."""
+        """Initialize a Square."""
         super().__init__(size, size, x, y, id)
 
     @property
     def size(self):
-        """Gufata uburebure bwa size."""
+        """Get or set the square size."""
         return self.width
 
     @size.setter
     def size(self, value):
-        """Gushyiraho size ku mpande zombi."""
         self.width = value
         self.height = value
 
     def __str__(self):
-        """Inyandiko yerekana imiterere ya Square."""
+        """Return the informal string representation."""
         return "[Square] ({}) {}/{} - {}".format(
-            self.id, self.x, self.y, self.width
+            self.id, self.x, self.y, self.size
         )
 
     def update(self, *args, **kwargs):
-        """Ivugurura attributes za Square."""
-        if args and len(args) != 0:
-            attrs = ["id", "size", "x", "y"]
-            for i, arg in enumerate(args):
-                if i < len(attrs):
-                    setattr(self, attrs[i], arg)
-        elif kwargs and len(kwargs) != 0:
-            for k, v in kwargs.items():
-                if hasattr(self, k):
-                    setattr(self, k, v)
+        """Assign attributes from positional or keyword arguments."""
+        attributes = ["id", "size", "x", "y"]
+
+        if args:
+            for index, value in enumerate(args):
+                if index < len(attributes):
+                    setattr(self, attributes[index], value)
+        else:
+            for key, value in kwargs.items():
+                if key in attributes:
+                    setattr(self, key, value)
 
     def to_dictionary(self):
-        """Igarura dictionary representation ya Square."""
+        """Return the dictionary representation of a Square."""
         return {
             "id": self.id,
             "size": self.size,
             "x": self.x,
-            "y": self.y
+            "y": self.y,
         }
+        
