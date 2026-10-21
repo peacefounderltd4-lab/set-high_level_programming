@@ -2,8 +2,8 @@
 """
 Script that lists all cities from the database hbtn_0e_4_usa
 """
-import MySQLdb
 import sys
+import MySQLdb
 
 if __name__ == "__main__":
     db = MySQLdb.connect(
