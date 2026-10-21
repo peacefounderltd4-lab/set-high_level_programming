@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 """
-Script that lists all cities from the database hbtn_0e_4_usa
+Lists all cities from the database hbtn_0e_4_usa
 """
 import sys
 import MySQLdb
 
-if __name__ == "__main__":
+
+def main():
+    """Connects to DB and lists cities sorted by id."""
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
@@ -15,12 +17,17 @@ if __name__ == "__main__":
     )
     cur = db.cursor()
     cur.execute(
-        "SELECT cities.id, cities.name, states.name FROM cities "
-        "JOIN states ON cities.state_id = states.id "
+        "SELECT cities.id, cities.name, states.name "
+        "FROM cities JOIN states ON cities.state_id = states.id "
         "ORDER BY cities.id ASC"
     )
-    for row in cur.fetchall():
+    rows = cur.fetchall()
+    for row in rows:
         print(row)
     cur.close()
     db.close()
-        
+
+
+if __name__ == "__main__":
+    main()
+    
