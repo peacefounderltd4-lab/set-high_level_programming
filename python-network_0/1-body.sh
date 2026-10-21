@@ -1,3 +1,7 @@
 #!/bin/bash
-curl -s -o /tmp/body -w "%{http_code}" "$1" | grep -q "^200$" && cat /tmp/body
-rm -f /tmp/body
+body=$(mktemp)
+status=$(curl -s -o "$body" -w "%{http_code}" "$1")
+if [ "$status" = "200" ]; then
+    cat "$body"
+fi
+rm -f "$body"
