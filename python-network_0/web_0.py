@@ -1,20 +1,19 @@
 #!/usr/bin/python3
-"""Simple local server for testing 0-body_size.sh."""
 from http.server import BaseHTTPRequestHandler, HTTPServer
-
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        body = b"my index page"
-        self.send_response(200)
-        self.send_header("Content-Type", "text/plain; charset=utf-8")
+        body = b"my index page" if self.path == "/" else b"Not found"
+        self.send_response(200 if self.path == "/" else 404)
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
 
-    def log_message(self, format, *args):
-        pass
+    def do_PUT(self):
+        body = b"You find me!" if self.path == "/catch_me" else b"Not found"
+        self.send_response(200 if self.path == "/catch_me" else 404)
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
 
-
-if __name__ == "__main__":
-    HTTPServer(("0.0.0.0", 5000), Handler).serve_forever()
+HTTPServer(("0.0.0.0", 5000), Handler).serve_forever()
