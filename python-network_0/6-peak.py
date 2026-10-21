@@ -3,7 +3,7 @@
 
 
 def find_peak(list_of_integers):
-    """Find a peak using binary search."""
+    """Return a peak element using binary search."""
     if not list_of_integers:
         return None
 
