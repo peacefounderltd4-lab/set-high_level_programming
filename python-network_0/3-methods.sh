@@ -1,2 +1,3 @@
 #!/bin/bash
-curl -s -I -X OPTIONS "$1" | grep -i '^Allow:' | sed 's/^[^:]*: *//' | tr -d '\r'
+# Display the HTTP methods accepted by the server
+curl -s -I -X OPTIONS "$1" | grep -i '^Allow:' | cut -d ' ' -f 2- | tr -d '\r'
