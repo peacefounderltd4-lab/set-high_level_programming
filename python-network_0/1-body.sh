@@ -1,7 +1,3 @@
 #!/bin/bash
-body=$(mktemp)
-status=$(curl -s -o "$body" -w "%{http_code}" "$1")
-if [ "$status" = "200" ]; then
-    cat "$body"
-fi
-rm -f "$body"
+# Display the body only for a 200 response
+curl -s -L -f "$1"
